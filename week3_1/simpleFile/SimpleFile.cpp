@@ -16,6 +16,7 @@ int main()
     int openFlags;
     mode_t filePerms;
     const int BUF_SIZE=128;
+    // const int BUF_SIZE=1024;
     char buf[BUF_SIZE];
     ssize_t numRead, numWrite;
     int rc=0;
