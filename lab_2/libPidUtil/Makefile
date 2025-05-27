@@ -2,6 +2,14 @@ CC=g++
 CFLAGS=-I
 CFLAGS+=-Wall
 CFLAGS+=-c
+
+# This code is slightly newer than the default g++ version on matrix.
+# I think.
+# Adding this flag seems to help it compile on matrix, and I think
+# doesn't hurt elsewhere.
+# I think.
+CFLAGS+= -std=c++11
+
 AR=ar
 
 all: pidUtil.o lib
