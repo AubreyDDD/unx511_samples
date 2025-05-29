@@ -37,12 +37,19 @@ int main(void)
 #if 1
     flags = fcntl(fd, F_GETFL);
     printf("1.flags:%08X O_RDWR:%08X O_CREAT:%08X O_APPEND:%08X O_EXCL:%08X\n", flags, O_RDWR, O_CREAT, O_APPEND, O_EXCL);
+
+    // Turn off O_APPEND
     flags = flags & ~O_APPEND;
+
 //  flags &= ~O_EXCL;
     printf("2.flags:%08X O_RDWR:%08X O_CREAT:%08X O_APPEND:%08X O_EXCL:%08X\n", flags, O_RDWR, O_CREAT, O_APPEND, O_EXCL);
+
+    // turn on O_EXCL
     flags = flags | O_EXCL;
+
 //  flags |= O_APPEND;
     printf("3.flags:%08X O_RDWR:%08X O_CREAT:%08X O_APPEND:%08X O_EXCL:%08X\n", flags, O_RDWR, O_CREAT, O_APPEND, O_EXCL);
+    // update the flags on the fd file descriptor
     fcntl(fd, F_SETFL, flags);
 #endif
     for(int i=10; i<20; ++i) {

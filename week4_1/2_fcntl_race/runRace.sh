@@ -1,10 +1,10 @@
 #!/bin/bash
 #Test race conditions
-./race1&
+./race1 &
 sleep 1
-./race2&
+./race2 &
 sleep 4
-./fcntl&
+./fcntl &
 
 echo "$0 waiting for 3 child processes"
 echo "$0: time: $(date +%M:%S)"
