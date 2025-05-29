@@ -1,5 +1,10 @@
 #!/bin/bash
-#Test race conditions
+# Test race conditions
+
+# Remember that race2 and fcntl open the file with O_APPEND
+# which causes an lseek() to the current end of the file
+# just before every write.
+
 ./race1 &
 sleep 1
 ./race2 &
