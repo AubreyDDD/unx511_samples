@@ -1,0 +1,13 @@
+#!/bin/bash
+
+line1="aaaaa bbbbb ccccc ddddd eeeee fffff ggggg"
+line1="$line1 hhhhh iiiii jjjjj kkkkk lllll mmmmm"
+line2="nnnnn ooooo ppppp qqqqq rrrrr sssss ttttt"
+line2="$line2 uuuuu vvvvv wwwww xxxxx yyyyy zzzzz"
+
+for (( i=0; i<250000; i++ )) ; do
+    echo "$line1"
+    echo "$line2"
+done
+
+exit 0
