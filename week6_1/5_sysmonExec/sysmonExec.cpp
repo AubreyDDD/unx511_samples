@@ -20,8 +20,11 @@ bool isParent = true;//Distinguishes between the parent
                      //process and the child process(es)
 pid_t childPid[NUM];
 
+// set the interfaces to ones on your machine
+//char *args[][3] = {{"./intfMonitor", "lo", NULL},
+//                   {"./intfMonitor", "ens33", NULL}};
 char *args[][3] = {{"./intfMonitor", "lo", NULL},
-                   {"./intfMonitor", "ens33", NULL}};
+                   {"./intfMonitor", "enp4s0", NULL}};
 
 int main()
 {

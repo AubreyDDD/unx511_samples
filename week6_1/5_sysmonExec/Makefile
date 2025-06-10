@@ -13,5 +13,5 @@ intfMonitor: $(FILES2)
 	$(CC) $(CFLAGS) -o intfMonitor $(FILES2)
 
 clean:
-	rm -f *.o sysmonExec intfMonitor
+	rm -f *.o sysmonExec intfMonitor Network.log
 
