@@ -1,0 +1,15 @@
+.Hardware-Device.ko.cmd
+.Hardware-Device.mod.cmd
+.Hardware-Device.mod.o.cmd
+.Hardware-Device.o.cmd
+.Module.symvers.cmd
+.hardwareDevice.o.cmd
+.modules.order.cmd
+Hardware-Device.ko
+Hardware-Device.mod
+Hardware-Device.mod.c
+Hardware-Device.mod.o
+Hardware-Device.o
+Module.symvers
+hardwareDevice.o
+modules.order
