@@ -20,6 +20,8 @@ int main ( ) {
 
    cout<<"This process id is "<<getpid()<<". It cannot be interrupted with ctrl-C or ctrl-Z."<<endl;
    sigaction(SIGINT, &action, NULL);
+   // instead of ignoring in a function, can just ignore as the action
+   action.sa_handler = SIG_IGN;
    sigaction(SIGTSTP, &action, NULL);
    for (int i=0;i<300;++i) {
        cout<<"uninterrupt: "<<i<<" seconds"<<endl;

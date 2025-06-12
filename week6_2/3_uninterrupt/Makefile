@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-I
 CFLAGS+=-Wall
-FILES=sigact.cpp
+FILES=uninterrupt.cpp
 
 all: uninterrupt
 

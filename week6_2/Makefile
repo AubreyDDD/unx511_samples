@@ -1,6 +1,6 @@
 # top level Makefile
 
-SUBDIRS = 1_fork 2_exec 3_on_exit 4_sysmonFork 5_sysmonExec
+SUBDIRS = 1_sendrecv 2_sigact 3_uninterrupt
 
 all install clean::
 	for i in $(SUBDIRS); do \
