@@ -7,7 +7,11 @@ OBJ=hellomake.o
 OBJ+=hellofunc.o
 DEPS=hellomake.h
 
-# $@ is the name of the file being generated, and $< the first prerequisite (usually the source file).
+all: hellomake
+
+# $@ is the name of the file being generated (the target),
+# and $< the first prerequisite (usually the source file),
+# and $^ all of the prerequisites.
 # For example, consider the following declaration:
 # 
 # all: library.cpp main.cpp
@@ -18,13 +22,14 @@ DEPS=hellomake.h
 #     $^ evaluates to library.cpp main.cpp
 #
 
+# The % signs indicate a pattern matching, so this means that
+# thing.o depends on thing.c and whatever $(DEPS) expands to
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
+# In this case, $^ expands to $(OBJ), whatever that is
 hellomake: $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
 	rm -f *.o hellomake
-
-all: hellomake

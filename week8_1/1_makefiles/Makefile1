@@ -4,10 +4,10 @@ CFLAGS+=-Wall
 FILES=hellomake.c
 FILES+=hellofunc.c
 
+all: hellomake
+
 hellomake: $(FILES)
 	$(CC) $(CFLAGS) $(FILES) -o hellomake
 
 clean:
 	rm -f *.o hellomake
-
-all: hellomake
