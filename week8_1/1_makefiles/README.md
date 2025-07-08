@@ -17,6 +17,9 @@ make -n -f Makefile1
 
 Read the comments in the different Makefiles.
 
+For Makefile5, ../obj and ../include are symbolic links to
+this directory, rather than separate diectories, for "convenience".
+
 Remember that command actions must be indented with a tab character,
 not spaces.
 
