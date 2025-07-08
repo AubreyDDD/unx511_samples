@@ -1,6 +1,7 @@
 // pipeline.c - Demonstrate pipes inside a C program
 //
 //              du -a | grep Week | more
+//              I think actually only: du -a | grep Week
 //
 //
 // dup, dup2 and execlp:
@@ -47,7 +48,7 @@ int main (int argc, char **argv)
     if (pid1 == 0) {
         // first child, will become "du -a"
 	// We bind the standard output to the write end of the pipe
-        if (dup2 (pfd1[1], STDOUT_FILENO) == -1)//STDOUT is now the output of pipe pfd1
+        if (dup2 (pfd1[1], STDOUT_FILENO) == -1)//STDOUT is now the write side of pipe pfd1
             perror ("dup2");
 	//We are now using STDOUT_FILENO as the write end of the pipe. This is itself
 	//a file descriptor. We therefore close all other unused file descriptors.
@@ -64,7 +65,7 @@ int main (int argc, char **argv)
     if (pid2 == 0) {
         // second child, who will become "grep Week"
 	// We bind the standard input to the read end of the pipe
-        if (dup2 (pfd1[0], STDIN_FILENO) == -1)//STDIN is now the input of pipe pfd1
+        if (dup2 (pfd1[0], STDIN_FILENO) == -1)//STDIN is now the output of pipe pfd1
             perror ("dup2");
 	//We are now using STDIN_FILENO as the read end of the pipe. This is itself
 	//a file descriptor. We therefore close all other unused file descriptors.
