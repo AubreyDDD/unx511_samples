@@ -17,8 +17,8 @@ using namespace std;
 
 const int PORT=1153;
 // const char IP_ADDR[]="192.168.6.128";//Address of the server
-// const char IP_ADDR[]="192.168.16.101";//Address of the server
-const char IP_ADDR[]="127.0.0.1";//Address of the server
+const char IP_ADDR[]="192.168.16.101";//Address of the server
+// const char IP_ADDR[]="127.0.0.1";//Address of the server
 const int BUF_LEN=30;
 
 char buf[]="abcdefghijklmnopqrstuvwxyz \

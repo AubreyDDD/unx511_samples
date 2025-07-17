@@ -12,12 +12,21 @@ The sizes vary a little.
 
 Seven code sets:
 - 1_fifo -- msg 260 bytes
+  - 8 seconds on my machine
 - 2_pipe -- msg 260 bytes
+  - 3.3 seconds on my machine
 - 3_queue -- msg 300 bytes
+  - 5 seconds on my machine
 - 4_stream -- unix domain socket -- msg 260 bytes
+  - 8 seconds on my machine
 - 5_datagram -- datagram to 127.0.0.1 - msg 260 bytes
+  - 22 seconds on my machine
 - 6_stream_network -- set your machine's IP address in the code - msg 520 bytes
+  - 79 seconds on my machine to 127.0.0.1
+  - 79 seconds on my machine to network IP address
 - 7_datagram_network -- set your machine's IP address in the code - msg 520 bytes
+  - 22 seconds on my machine to 127.0.0.1
+  - 26 seconds on my machine to network IP address
 
 I think one conclusion is:
 - with IP protocols:
