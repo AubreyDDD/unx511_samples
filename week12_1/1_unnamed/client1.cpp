@@ -16,6 +16,9 @@ void *threadfunc(void *arg) {
         cout<<"threadfunc: Hello from da thread!"<<endl;
         sleep(1);
         sem_post(&semaphore);
+	// give main a fair chance to get its foot in the door
+	int i, j=0;
+	for (i=0; i<10000; i++) { j+=1; }
     }
     cout<<"threadfunc: exiting..."<<endl;
     pthread_exit(NULL);
