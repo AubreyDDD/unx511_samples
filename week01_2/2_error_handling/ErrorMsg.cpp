@@ -15,13 +15,14 @@
 
 using namespace std;
 
-int main()
+int main( int argc, char *argv[] )
 {
     char filename[]="/home/miguelwatler/src/Week1/Math.cpp";
 //  char filename[]="~/home/miguelwatler/src/Week1/Math.cpp";//This will provoke an error
     int rc=0;
     int err = chmod(filename, S_IRWXU|S_IRWXG|S_IROTH);
-    system("clear");
+    // I don't like clearing the screen and losing context
+    // system("clear");
     cout << "err is " << err << endl;
     cout << "errno is " << errno << endl;
     if(err==-1) {
@@ -37,7 +38,11 @@ int main()
     pwd = getpwnam("miguelwatler");
 //  pwd = getpwnam("root");//This will provoke an error
     if (pwd == NULL) {
+	// Not a good error message
         cout << "Cannot get password structure" << endl;
+	// A better error message
+	fprintf( stderr, "%s: could not look up '%s': %s\n",
+	    argv[0], "miguelwatler", strerror( errno ) );
 	rc = -1;
     }
     if(rc==0) {
