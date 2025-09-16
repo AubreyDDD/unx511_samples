@@ -2,6 +2,8 @@
 module="Hardware-Device"
 device="hardware"
 
+set -e		# exit on error
+
 # invoke insmod to insert the module into the kernel
 /sbin/insmod ./$module.ko
 

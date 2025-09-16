@@ -30,10 +30,12 @@ int main()
             nbytes=read(fd, buf, BUF_LEN);
             printf("nbytes:%d = read() buf:%s\n", nbytes, buf);
             sleep(3);
+// should complain if we get the same thing as before
         }
         printf("HARDWARE_DEVICE_HALT...\n");
         ioctl(fd, HARDWARE_DEVICE_HALT, NULL);
         for(int i=0; i<3; ++i) {
+// should complain if we don't get the same thing each time
             nbytes=read(fd, buf, BUF_LEN);
             printf("nbytes:%d = read() buf:%s\n", nbytes, buf);
             sleep(3);
@@ -44,6 +46,7 @@ int main()
             nbytes=read(fd, buf, BUF_LEN);
             printf("nbytes:%d = read() buf:%s\n", nbytes, buf);
             sleep(3);
+// should complain if we get the same thing as before
         }
     }
 
