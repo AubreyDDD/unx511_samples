@@ -1,6 +1,6 @@
 # top level Makefile
 
-SUBDIRS = simpleFile speedTest diskDrive
+SUBDIRS = 1_simpleFile 2_speedTest 3_diskDrive
 
 all install clean::
 	for i in $(SUBDIRS); do \
