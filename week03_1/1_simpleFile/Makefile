@@ -6,10 +6,10 @@ FILES2=SeekFile.cpp
 
 all: SimpleFile SeekFile
 
-SimpleFile: $(FILES)
+SimpleFile: $(FILES1)
 	$(CC) $(CFLAGS) $(FILES1) -o SimpleFile
 
-SeekFile: $(FILES)
+SeekFile: $(FILES2)
 	$(CC) $(CFLAGS) $(FILES2) -o SeekFile
 
 clean:
