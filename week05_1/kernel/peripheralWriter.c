@@ -157,20 +157,21 @@ static ssize_t peripheral_writer_write(struct file *filp, const char __user *buf
 /* See Chapter 3 of Linux Device Drivers, page 51 */
 static long peripheral_writer_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
+    long res;		// to avoid compiler warnings if ignore results
     switch(cmd) {
         case PERIPHERAL_WRITER_GET_INFO:
             /* Copy to a user space buffer */
-            copy_to_user((PERIPHERAL_INFO*) arg, &peripheralInfo, sizeof(peripheralInfo));
+            res = copy_to_user((PERIPHERAL_INFO*) arg, &peripheralInfo, sizeof(peripheralInfo));
             printk(KERN_INFO "num_channels = %d size_channel = %d\n", peripheralInfo.num_channels, peripheralInfo.size_channel);
             break;
         case PERIPHERAL_WRITER_GET_CHANNEL_INDEX:
             /* Copy to a user space buffer */
-            copy_to_user((int*) arg, &peripheralChannelIndex, sizeof(peripheralChannelIndex));
+            res = copy_to_user((int*) arg, &peripheralChannelIndex, sizeof(peripheralChannelIndex));
             printk(KERN_INFO "peripheralChannelIndex = %d\n", peripheralChannelIndex);
             break;
         case PERIPHERAL_WRITER_SET_CHANNEL_INDEX:
             /* Copy from a user space buffer */
-            copy_from_user(&peripheralChannelIndex, (int*)arg, sizeof(peripheralChannelIndex));
+            res = copy_from_user(&peripheralChannelIndex, (int*)arg, sizeof(peripheralChannelIndex));
             printk(KERN_INFO "peripheralChannelIndex = %d\n", peripheralChannelIndex);
             break;
     }

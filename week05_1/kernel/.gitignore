@@ -1,8 +1,10 @@
+..module-common.o.cmd
 .Module.symvers.cmd
 .Peripheral-Writer.ko.cmd
 .Peripheral-Writer.mod.cmd
 .Peripheral-Writer.mod.o.cmd
 .Peripheral-Writer.o.cmd
+.module-common.o
 .modules.order.cmd
 .peripheralWriter.o.cmd
 Module.symvers
@@ -11,5 +13,5 @@ Peripheral-Writer.mod
 Peripheral-Writer.mod.c
 Peripheral-Writer.mod.o
 Peripheral-Writer.o
-peripheralWriter.o
 modules.order
+peripheralWriter.o
