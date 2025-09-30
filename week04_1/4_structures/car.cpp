@@ -54,6 +54,7 @@ int main(void)
     iov[1].iov_base = &car2;
     iov[1].iov_len = sizeof(CAR);
     len += iov[1].iov_len;
+    cout << "len: " << len << endl;
 
     int numWrite = writev(fd, iov, 2);
     if(numWrite<0) {

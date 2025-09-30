@@ -64,5 +64,6 @@ int main(void)
 
     cout<<"fcntl: DONE"<<endl;
     close(fd);
+    cout<<"fcntl: closed"<<endl;
     return 0;
 }

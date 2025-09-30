@@ -34,6 +34,8 @@ int main(void)
 	sleep(1);
     }
 
+    cout<<"race1: DONE"<<endl;
     close(fd1);
+    cout<<"race1: closed"<<endl;
     return 0;
 }
