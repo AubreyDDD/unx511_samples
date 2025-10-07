@@ -37,11 +37,11 @@ int main()
         printf("nbytes:%d = write()\n", nbytes);
         // This will call peripheral_writer_read() in the device driver
         nbytes=read(fd, buf, BUF_LEN);
-        printf("nbytes:%d = read() buf:%s\n", nbytes, buf);
+        printf("nbytes:%d = read() buf:'%s'\n", nbytes, buf);
         nbytes=write(fd, buf, strlen(buf));
         printf("nbytes:%d = write()\n", nbytes);
         nbytes=read(fd, buf, BUF_LEN);
-        printf("nbytes:%d = read() buf:%s\n", nbytes, buf);
+        printf("nbytes:%d = read() buf:'%s'\n", nbytes, buf);
         // This will call peripheral_writer_ioctl() in the device driver
         ioctl(fd, PERIPHERAL_WRITER_GET_INFO, &perInfo);
         printf("perInfo.num_channels:%d perInfo.size_channel:%d\n", perInfo.num_channels, perInfo.size_channel);
@@ -51,6 +51,9 @@ int main()
         ioctl(fd, PERIPHERAL_WRITER_SET_CHANNEL_INDEX, &perIndex);
         ioctl(fd, PERIPHERAL_WRITER_GET_CHANNEL_INDEX, &perIndex);
         printf("perIndex:%d\n", perIndex);
+        nbytes=read(fd, buf, BUF_LEN);
+        printf("nbytes:%d = read() buf:'%s'\n", nbytes, buf);
+        printf("done\n");
     }
 
     // This will call peripheral_writer_close() in the device driver
