@@ -82,24 +82,35 @@ int main()
     FD_ZERO(&active_fd_set);
     //Add the master_fd to the socket set
     FD_SET(master_fd, &active_fd_set);
-    max_fd = master_fd;//We will select from max_fd+1 sockets (plus one is due to a new connection)
+    //We will select from max_fd+1 sockets (plus one is due to a new connection)
+    // I'm not sure that is correct - the max_fd+1 is the count of
+    // file descriptors for select() to check, starting at 0
+    max_fd = master_fd;
     is_running=true;
 
     while(is_running) {
         //Block until an input arrives on one or more sockets
         read_fd_set = active_fd_set;
-        ret=select(max_fd+1, &read_fd_set, NULL, NULL, NULL);//Select from up to max_fd+1 sockets
+	// Select from up to max_fd+1 sockets
+	// The select set contains
+	// - the original socket - which might have a new connection
+	// - all of the accepted client connections
+        ret=select(max_fd+1, &read_fd_set, NULL, NULL, NULL);
         if (ret < 0) {
             cout << "server: " << strerror(errno) << endl;
-        } else {//Service all the sockets with input pending
-            if (FD_ISSET (master_fd, &read_fd_set))
-            {//Connection request on the master socket
-                cl[numClients] = accept(master_fd, NULL, NULL);//Accept the new connection
+        } else {
+	    // at least one socket is ready
+            if (FD_ISSET (master_fd, &read_fd_set)) {
+		// Connection request on the master socket - a new connection
+		// Accept the new connection
+                cl[numClients] = accept(master_fd, NULL, NULL);
                 if (cl[numClients] < 0) {
+		    // accept() failed somehow
                     cout << "server: " << strerror(errno) << endl;
                 } else {
                     cout<<"Server: incoming connection "<<cl[numClients]<<endl;
-                    FD_SET (cl[numClients], &active_fd_set);//Add the new connection to the set
+		    // Add the new connection to the select set
+                    FD_SET (cl[numClients], &active_fd_set);
                     //Request the pid of the new connection
                     len = sprintf(buf, "Pid")+1;
                     ret = write(cl[numClients], buf, len);
@@ -107,15 +118,18 @@ int main()
                         cout<<"server: Write Error"<<endl;
                         cout<<strerror(errno)<<endl;
                     }
-                    if(max_fd<cl[numClients]) max_fd=cl[numClients];//Update the maximum fd
+                    if(max_fd<cl[numClients]) {
+			max_fd=cl[numClients];//Update the maximum fd
+		    }
                     ++numClients;
                 }
-            }
-            else//Data arriving on an already-connected socket
-            {
-                for (int i = 0; i < numClients; ++i) {//Find which client sent the data
+            } else {
+		// Data arriving on one or more already-connected sockets
+		// Loop over clients, looking for ready file descriptors
+                for (int i = 0; i < numClients; ++i) {
                     if (FD_ISSET (cl[i], &read_fd_set)) {
-                        ret = read(cl[i],buf,BUF_LEN);//Read the data from that client
+			// Read the data from that client
+                        ret = read(cl[i],buf,BUF_LEN);
                         if(ret==-1) {
                             cout<<"server: Read Error"<<endl;
                             cout<<strerror(errno)<<endl;
